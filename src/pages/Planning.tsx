@@ -4,7 +4,7 @@
 import React, { useMemo } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { useSelector } from "react-redux";
-import { ColDef, ColGroupDef } from "ag-grid-community";
+import { ColDef} from "ag-grid-community";
 import { RootState } from "../redux/store";
 import { shallowEqual } from "react-redux";
 import { createSelector } from "reselect";

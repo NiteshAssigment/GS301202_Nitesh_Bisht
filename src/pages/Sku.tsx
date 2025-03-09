@@ -2,7 +2,7 @@
 // It uses the ag-grid-react library to display the SKU data in a table format. 
 // It also contains the logic to add, edit, and delete SKU data. 
 // The SKU data is stored in the Redux store and is persisted in the local storage.
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
 import { AgGridReact } from "ag-grid-react";
@@ -17,14 +17,12 @@ import { Trash2, Edit2 } from "lucide-react";
 import Button from "../components/Button";
 import SkuForm from "../components/SkuForm";
 import { SkuData } from "../types";
-// import "ag-grid-community/styles/ag-grid.css";
-// import "ag-grid-community/styles/ag-theme-alpine.css";
+
 
 const LOCAL_STORAGE_KEY = "skuData";
 
 const Sku = () => {
   const skus = useSelector((state: RootState) => state.sku.skus);
-  const calendar = useSelector((state: RootState) => state.calendar);
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSku, setSelectedSku] = useState<SkuData | null>(null);

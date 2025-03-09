@@ -1,11 +1,10 @@
-import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import Store from "../pages/Store";
 import { RootState } from "../redux/store";
-import { addStore, updateStore, deleteStore } from "../redux/slices/storeSlice";
+import { addStore, updateStore} from "../redux/slices/storeSlice";
 
 // Mock Redux Store
 const mockStore = configureStore<RootState>([]);
