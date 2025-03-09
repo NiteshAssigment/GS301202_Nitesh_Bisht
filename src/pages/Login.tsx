@@ -1,7 +1,3 @@
-// Login page component
-// This component is used to log in to the application. 
-// It contains a form with fields for email and password. 
-// The user can log in using their email and password or using Google Sign-In.
 import { useState } from "react";
 import { auth, googleProvider } from "../firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
@@ -12,26 +8,51 @@ import { FiMail, FiLock } from "react-icons/fi";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    setError(null);
+
+    if (!email.includes("@")) {
+      setError("Please enter a valid email.");
+      return;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long.");
+      return;
+    }
+
+    setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
-    } catch (error) {
-      console.error("Login error:", error);
-      alert("Login failed. Please try again.");
+    } catch (error: any) {
+      switch (error.code) {
+        case "auth/user-not-found":
+          setError("No account found with this email.");
+          break;
+        case "auth/invalid-credential":
+          setError("Incorrect email or password.");
+          break;
+        default:
+          setError("Login failed. Please try again.");
+      }
     }
+    setLoading(false);
   };
 
   const handleGoogleSignIn = async () => {
+    setLoading(true);
     try {
       await signInWithPopup(auth, googleProvider);
       navigate("/");
     } catch (error) {
       console.error("Google Sign-In error:", error);
-      alert("Google Sign-In failed. Please try again.");
+      setError("Google Sign-In failed. Please try again.");
     }
+    setLoading(false);
   };
 
   return (
@@ -39,6 +60,8 @@ const Login = () => {
       <div className="bg-white p-8 rounded-xl shadow-lg w-96">
         <h2 className="text-2xl font-bold text-center text-gray-800">Welcome Back</h2>
         <p className="text-sm text-center text-gray-500 mb-6">Login to continue</p>
+
+        {error && <p className="text-red-500 text-center text-sm mb-4">{error}</p>}
 
         <div className="space-y-4">
           {/* Email Input */}
@@ -68,18 +91,20 @@ const Login = () => {
           {/* Login Button */}
           <button
             onClick={handleLogin}
-            className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-200"
+            className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-200 disabled:bg-gray-400"
+            disabled={loading}
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
 
           {/* Google Sign-in Button */}
           <button
             onClick={handleGoogleSignIn}
-            className="w-full flex items-center justify-center gap-2 bg-red-500 text-white p-3 rounded-lg hover:bg-red-600 transition duration-200"
+            className="w-full flex items-center justify-center gap-2 bg-red-500 text-white p-3 rounded-lg hover:bg-red-600 transition duration-200 disabled:bg-gray-400"
+            disabled={loading}
           >
             <FaGoogle className="text-lg" />
-            Sign in with Google
+            {loading ? "Signing in..." : "Sign in with Google"}
           </button>
 
           {/* Sign Up Link */}
