@@ -1,3 +1,58 @@
+# GSynergy Data Viewer TypeScript React Challenge
+This project is a Progressive Web App (PWA) built using React, TypeScript, Redux, and AG-Grid. The app provides functionality for manipulating and analyzing data, including adding dimension members, entering measure data, performing calculations, applying conditional formatting, and visualizing data in charts (upcoming feature). The project includes features like sorting, filtering, authentication, and data import/export.
+
+## Prerequisites
+Make sure you have the following installed on your system:
+- Node.js (v16 or later)
+- npm or yarn
+  
+## Installation & Running the Project
+Clone the repository:
+```
+git clone https://github.com/NiteshAssigment/GS301202_Nitesh_Bisht.git
+```
+Install dependencies:
+```
+npm install
+```
+Start the development server:
+```
+npm run start
+```
+Running Tests:
+```
+npm test
+```
+## Features Implemented Well
+### 1.Efficient State Management with Redux
+     -Implemented a structured Redux store for better scalability.
+     -Used Redux Toolkit to manage global state efficiently.
+
+### 2.AG-Grid Integration for Data Management
+     -Implemented dynamic column rendering and sorting.
+     -Applied conditional formatting to highlight key data insights.
+
+### 3.TypeScript
+     -Used strict TypeScript types to ensure maintainability.
+     -But uses any in some cases.
+
+### 4.Firebase Integration 
+    -Successfully implemented Firebase 
+    -Sign up and Login functionality.
+    -Google sign in.
+
+## What I Would Improve with 4 More Hours
+
+### 1.Performance Optimizations
+     -Implement Backend with Express Js and MySQL database.
+     -Implement backend caching and pagination.
+
+### 2.Cover Optional functionlity
+     -Like The Chart page functionality
+     -Provide the capability to import the given sample data to
+     -prepopulate the application screens.
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -52,3 +107,4 @@ export default tseslint.config({
   },
 })
 ```
+
