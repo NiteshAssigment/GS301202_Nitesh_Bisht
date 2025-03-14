@@ -1,5 +1,5 @@
 # GSynergy Data Viewer TypeScript React Challenge
-This project is a Progressive Web App (PWA) built using React, TypeScript, Redux, and AG-Grid. The app provides functionality for manipulating and analyzing data, including adding dimension members, entering measure data, performing calculations, applying conditional formatting, and visualizing data in charts (upcoming feature). The project includes features like sorting, filtering, authentication, and data import/export.
+This project is a Progressive Web App (PWA) built using React, TypeScript, Redux, and AG-Grid. The app provides functionality for manipulating and analyzing data, including adding dimension members, entering measure data, performing calculations, applying conditional formatting, and visualizing data in charts (upcoming feature). The project includes features like sorting, filtering, authentication.
 
 ## Prerequisites
 Make sure you have the following installed on your system:
